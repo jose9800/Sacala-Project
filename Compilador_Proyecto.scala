@@ -1,14 +1,16 @@
 object HolaMundo{
     //Probando rama alterna en AB_rama
     def Tokens(cadena: String): Boolean = {
-        cadena.length() match {//token para int
-            case 3 => {
+        cadena.length() match {
+           
+            case 3 => {//token para int
                 if(cadena(0) == ('i') && cadena(1) == ('n') && cadena(2) == ('t')){
                     true
                 }else{
                     false
                 }
             }
+           
             case 4 => {// token para char
                 if(cadena(0) == ('c') && cadena(1) == ('h' ) && cadena(2) == ('a') && cadena(3) == ('r')){
                     true
@@ -16,6 +18,23 @@ object HolaMundo{
                     false
                 }
             }
+
+            case 6 => {//token para double
+                if(cadena(0) == ('d') && cadena(1) == ('o' ) && cadena(2) == ('u') && cadena(3) == ('b') && cadena(4) == ('l' ) && cadena(5) == ('e')){
+                    true
+                }else{
+                    false
+                }
+            }
+            
+            case 5 => {//token para float
+                if(cadena(0) == ('f') && cadena(1) == ('l' ) && cadena(2) == ('o') && cadena(3) == ('a') && cadena(4) == ('t' )){
+                    true
+                }else{
+                    false
+                }
+            }
+
             case _ => false
         }
         
@@ -108,6 +127,10 @@ object HolaMundo{
         )
     }
 
+    def Tabla(sim: Char): Boolean = {
+        
+    }
+
     def main(args: Array[String]): Unit = {
         do{
             println("Ingrese un simbolo para buscar en tabla de simbolos.")
@@ -123,15 +146,6 @@ object HolaMundo{
         }while(true)
     }
 }
-
-
-
-
-
-
-
-
-
 
 
 
