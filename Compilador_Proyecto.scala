@@ -128,21 +128,35 @@ object HolaMundo{
     }
 
     def Tabla(sim: Char): Boolean = {
+        var bandera: Boolean = false
+        var caracter: Int =33
+        do{
+            if(sim == caracter.toChar)
+            {
+                bandera = true
+                caracter = 125
+            }
+            else
+            {
+                caracter = caracter + 1
+            }
+        }while(caracter<=125)
+        bandera
+    }
+
+    def Analisi_Lexico(pal: String, sim: Char): Boolean = {
         
     }
 
     def main(args: Array[String]): Unit = {
         do{
             println("Ingrese un simbolo para buscar en tabla de simbolos.")
-            Tabla_Sim(Console.in.readLine()(0))
-            println("Ingrese una palabra para verificarla como token.")
-            println(
-            if(Tokens(Console.in.readLine())){
-                "Si existe entre los tokens"
-            }else{
-                "No existe entre los tokens"
+            Tabla(Console.in.readLine()(0))match{
+                case true => {
+                    println("Si existe")
+                }
+                case _ => println("No existe")
             }
-        )
         }while(true)
     }
 }
