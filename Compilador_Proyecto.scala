@@ -144,16 +144,12 @@ object HolaMundo{
         bandera
     }
 
-    def Analisi_Lexico(pal: String, sim: Char): Boolean = {
-        
-    }
-
     def main(args: Array[String]): Unit = {
         do{
-            println("Ingrese un simbolo para buscar en tabla de simbolos.")
-            Tabla(Console.in.readLine()(0))match{
+            println("Ingrese una cadena para comprobarla.")
+            Tokens(Console.in.readLine())match{
                 case true => {
-                    println("Si existe")
+                    println("Si existe como token de palabra reservada")
                 }
                 case _ => println("No existe")
             }
