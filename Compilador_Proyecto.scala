@@ -51,10 +51,13 @@ object HolaMundo{
                 case '%' => "Modular"
                 case '/' => "Diagonal"
                 case '=' => "Asignador"
+                case '+' => "Adicion"
+                case '-' => "Sustraccion"
                 case '*' => "Multiplicador"
                 case '|' => "Simbolo OR"
                 case '&' => "Simbolo AND"
                 case '!' => "Negacion"
+                case ';' => "Fin de linea"
                 //Minusculas a-z
                 case 'a' => "Letra minuscula a"
                 case 'b' => "Letra minuscula b"
@@ -127,9 +130,9 @@ object HolaMundo{
         )
     }
 
-    def Tabla(sim: Char): Boolean = {
+    def Tabla(sim: Char): String = {
         var bandera: Boolean = false
-        var caracter: Int =33
+        var caracter: Int = 97
         do{
             if(sim == caracter.toChar)
             {
@@ -140,61 +143,75 @@ object HolaMundo{
             {
                 caracter = caracter + 1
             }
-        }while(caracter<=125)
-        bandera
+        }while(caracter<=122)
+        "Identificador"
     }
 
-    def main(args: Array[String]): Unit = {
-        do{
-            println("Ingrese una cadena para comprobarla.")
-            Tokens(Console.in.readLine())match{
-                case true => {
-                    println("Si existe como token de palabra reservada")
-                }
-                case _ => println("No existe")
+    def Analisis_Lexico(linea: String): Unit =
+    {
+        var temp: String = ""
+        var n: Int = 0
+        var bandera: Boolean = false
+        do
+        {
+            temp += linea(n)
+            if(Tokens(temp))
+            {
+                bandera = true
             }
-        }while(true)
+            else
+            {
+                n += 1
+            }
+        }while(!bandera && n < linea.length())
+        
+        if(bandera)
+        {
+            println(s"$temp (palabra reservada)")
+        }
+        else if(n < linea.length())
+        {
+            temp = ""
+            bandera = false
+            do
+            {
+                if(linea(n) != ' ')
+                {
+                    if(linea(n+1) != ' ' )
+                    {
+                        temp += linea(n)
+                        bandera = true
+                    }
+                    else if(linea(n+1) != ';')
+                    {
+                        println(Tabla_Sim(linea(n+1)))
+                    }
+                    else
+                    {
+
+                    }
+                    
+                }
+                else
+                {
+                
+                }
+                n += 1
+            }while(bandera && n < linea.length())
+            println(s"$temp (identificador)")
+        }else
+        {
+            println("Error")
+        }
+
+    }
+
+    def main(args: Array[String]): Unit = 
+    {
+       do
+       {
+           println("Introdusca una linea de codigo en busca de Tokens.")
+           println(Analisis_Lexico(Console.in.readLine()))
+       }while(true)
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-/*
-        println("Tabla de simbolos")
-        val k="Interpolar cadena"
-        println(s"hola mundo $k")//Interpolar cadena (concatenacion)
-        */
-//Componenetes lexico, Tipo de alfabeto, expresion regular(lenguajes), tabla de simbolos
-/*public miclase{
-    protected mi clase x;
-    private int y;
-    public string z;
-}*/
-/*
-Tabla de simbolos
-Nombre  Tipo    ambito    Visibilidad Tamaño  Posicion    rul
-miclase class   global      publico     3       -          clase
-x       miclase miclase     protected   1       0          atrivuto
-y       int     miclase     private     1       1          atrivuto
-z       string  miclase     public      1       2          atrivuto
-*/
-//cd para moverse entre directorios
-/*Ejecutar: Scala "Nombre".scala
-metodo def
-ejemplo:
-def suma(a: Int, b: Int): Int = {
-    a+b
-}
-
-utilizando:
-suma(5+5)
-res3: Int = 10
-*/
