@@ -40,170 +40,140 @@ object HolaMundo{
         
     }
     
-    def Tabla_Sim(simbolo: Char): Unit = {
-        println(
-            simbolo match {
-                //caracteres especiales
-                case '@' => "Simbolo de referencia"
-                case '"' => "Inicio-fin de cadena"
-                case '(' => "Principio parentecis"
-                case ')' => "Fin parentecis"
-                case '%' => "Modular"
-                case '/' => "Diagonal"
-                case '=' => "Asignador"
-                case '+' => "Adicion"
-                case '-' => "Sustraccion"
-                case '*' => "Multiplicador"
-                case '|' => "Simbolo OR"
-                case '&' => "Simbolo AND"
-                case '!' => "Negacion"
-                case ';' => "Fin de linea"
-                //Minusculas a-z
-                case 'a' => "Letra minuscula a"
-                case 'b' => "Letra minuscula b"
-                case 'c' => "Letra minuscula c"
-                case 'd' => "Letra minuscula d"
-                case 'e' => "Letra minuscula e"
-                case 'f' => "Letra minuscula f"
-                case 'g' => "Letra minuscula g"
-                case 'h' => "Letra minuscula h"
-                case 'i' => "Letra minuscula i"
-                case 'j' => "Letra minuscula j"
-                case 'k' => "Letra minuscula k"
-                case 'l' => "Letra minuscula l"
-                case 'm' => "Letra minuscula m"
-                case 'n' => "Letra minuscula n"
-                case 'ñ' => "Letra minuscula ñ"
-                case 'o' => "Letra minuscula o"
-                case 'p' => "Letra minuscula p"
-                case 'q' => "Letra minuscula q"
-                case 'r' => "Letra minuscula r"
-                case 's' => "Letra minuscula s"
-                case 't' => "Letra minuscula t"
-                case 'u' => "Letra minuscula u"
-                case 'v' => "Letra minuscula v"
-                case 'w' => "Letra minuscula w"
-                case 'x' => "Letra minuscula x"
-                case 'y' => "Letra minuscula y"
-                case 'z' => "Letra minuscula z"
-                //mayusculas A-Z
-                case 'A' => "Letra mayuscula A"
-                case 'B' => "Letra mayuscula B"
-                case 'C' => "Letra mayuscula C"
-                case 'D' => "Letra mayuscula D"
-                case 'E' => "Letra mayuscula E"
-                case 'F' => "Letra mayuscula F"
-                case 'G' => "Letra mayuscula G"
-                case 'H' => "Letra mayuscula H"
-                case 'I' => "Letra mayuscula I"
-                case 'J' => "Letra mayuscula J"
-                case 'K' => "Letra mayuscula K"
-                case 'L' => "Letra mayuscula L"
-                case 'M' => "Letra mayuscula M"
-                case 'N' => "Letra mayuscula N"
-                case 'Ñ' => "Letra mayuscula Ñ"
-                case 'O' => "Letra mayuscula O"
-                case 'P' => "Letra mayuscula P"
-                case 'Q' => "Letra mayuscula Q"
-                case 'R' => "Letra mayuscula R"
-                case 'S' => "Letra mayuscula S"
-                case 'T' => "Letra mayuscula T"
-                case 'U' => "Letra mayuscula U"
-                case 'V' => "Letra mayuscula V"
-                case 'W' => "Letra mayuscula W"
-                case 'X' => "Letra mayuscula X"
-                case 'Y' => "Letra mayuscula Y"
-                case 'Z' => "Letra mayuscula Z"
-                //Numeros 0-9
-                case '0' => "Numero 0"
-                case '1' => "Numero 1"
-                case '2' => "Numero 2"
-                case '3' => "Numero 3"
-                case '4' => "Numero 4"
-                case '5' => "Numero 5"
-                case '6' => "Numero 6"
-                case '7' => "Numero 7"
-                case '8' => "Numero 8"
-                case '9' => "Numero 9"
-                case _ => "No se encontro el simbolo" //default
-            }
-        )
+    def Tabla_Sim(simbolo: Char): String = //tabla de simbolos para caracteres especiales
+    {
+        simbolo match 
+        {
+            //caracteres especiales
+            case '@' => "Simbolo de referencia"
+            case '"' => "Inicio-fin de cadena"
+            case '(' => "Principio parentecis"
+            case ')' => "Fin parentecis"
+            case '%' => "Modular"
+            case '/' => "Diagonal"
+            case '=' => "Asignador"
+            case '+' => "Adicion"
+            case '-' => "Sustraccion"
+            case '*' => "Multiplicador"
+            case '|' => "Simbolo OR"
+            case '&' => "Simbolo AND"
+            case '!' => "Negacion"
+            case ';' => "Fin de linea"
+            case _ => "" //default
+        }
     }
 
-    def Tabla(sim: Char): String = {
+    def Tabla_Sim_min(sim: Char): Boolean = { //tabla de simbolos para minusculas
         var bandera: Boolean = false
         var caracter: Int = 97
         do{
             if(sim == caracter.toChar)
             {
                 bandera = true
-                caracter = 125
             }
             else
             {
                 caracter = caracter + 1
             }
-        }while(caracter<=122)
-        "Identificador"
+        }while(!bandera && caracter < 123)
+        bandera
     }
 
-    def Analisis_Lexico(linea: String): Unit =
-    {
-        var temp: String = ""
-        var n: Int = 0
+        def Tabla_Sim_MAY(sim: Char): Boolean = { //tabla de simbolos para mayusculas
         var bandera: Boolean = false
-        do
-        {
-            temp += linea(n)
-            if(Tokens(temp))
+        var caracter: Int = 65
+        do{
+            if(sim == caracter.toChar)
             {
                 bandera = true
             }
             else
             {
-                n += 1
+                caracter = caracter + 1
             }
-        }while(!bandera && n < linea.length())
-        
-        if(bandera)
-        {
-            println(s"$temp (palabra reservada)")
-        }
-        else if(n < linea.length())
-        {
-            temp = ""
-            bandera = false
-            do
-            {
-                if(linea(n) != ' ')
-                {
-                    if(linea(n+1) != ' ' )
-                    {
-                        temp += linea(n)
-                        bandera = true
-                    }
-                    else if(linea(n+1) != ';')
-                    {
-                        println(Tabla_Sim(linea(n+1)))
-                    }
-                    else
-                    {
+        }while(!bandera && caracter < 91)
+        bandera
+    }
 
-                    }
-                    
+    def Analisis_Lexico(linea: String): String =
+    {
+        var temp: Int = 0
+        var pal: String = ""
+        var bandera: Boolean = true
+
+        while (linea(temp) == ' ' && temp < linea.length())
+        {
+            temp += 1
+        }
+
+        while (bandera && temp < linea.length())
+        {
+            if(linea(temp) != ' ' )
+            {
+                pal += linea(temp)
+                temp += 1
+            }
+            else
+            {
+                bandera = false
+            }
+        }
+
+        if(Tokens((pal)))
+        {
+            if(temp < linea.length())
+            {
+                s" $pal (Es una palabra reservada)" + Analisis_Lexico(Nueva_Pal(linea,temp))
+            }
+            else
+            {
+                s" $pal (Es una palabra reservada)"
+            }
+            
+        }
+        else if(pal.length() == 1)
+        {
+            if(Tabla_Sim(pal(0)) != "")
+            {
+                if(temp < linea.length())
+                {
+                    s" $pal " + Tabla_Sim(pal(0)) + Analisis_Lexico(Nueva_Pal(linea,temp))
                 }
                 else
                 {
-                
+                    s" $pal " + Tabla_Sim(pal(0))
                 }
-                n += 1
-            }while(bandera && n < linea.length())
-            println(s"$temp (identificador)")
-        }else
-        {
-            println("Error")
+                
+            }
+            else
+            {
+                "Error"
+            }
         }
+        else
+        {
+            if(temp < linea.length())
+                {
+                    s" $pal (Es un identificador)" + Analisis_Lexico(Nueva_Pal(linea,temp))
+                }
+                else
+                {
+                    s" $pal (Es un identificador)"
+                }
+            
+        }
+    }
 
+    def Nueva_Pal(linea: String, posicion: Int): String = 
+    {
+        var palabra: String = ""
+        var numero: Int = posicion
+        while (numero<linea.length())
+        {
+            palabra += linea(numero)
+            numero += 1
+        }
+        palabra
     }
 
     def main(args: Array[String]): Unit = 
