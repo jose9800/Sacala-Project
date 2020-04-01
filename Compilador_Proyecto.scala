@@ -34,6 +34,14 @@ object HolaMundo{
                     false
                 }
             }
+            
+            case 7 => {//token para class
+                if(cadena(0) == ('c') && cadena(1) == ('l' ) && cadena(2) == ('a') && cadena(3) == ('s') && cadena(4) == ('s')){
+                    true
+                }else{
+                    false
+                }
+            }
 
             case _ => false
         }
