@@ -1,3 +1,4 @@
+import scala.annotation.switch
 object HolaMundo{
     //Probando rama alterna en AB_rama
     def Tokens(cadena: String): Boolean = {
@@ -27,22 +28,22 @@ object HolaMundo{
                 }
             }
             
-            case 5 => {//token para float
+            /*case 5 => {//token para float
                 if(cadena(0) == ('f') && cadena(1) == ('l' ) && cadena(2) == ('o') && cadena(3) == ('a') && cadena(4) == ('t' )){
                     true
                 }else{
                     false
                 }
-            }
-            
-            case 7 => {//token para class
-                if(cadena(0) == ('c') && cadena(1) == ('l' ) && cadena(2) == ('a') && cadena(3) == ('s') && cadena(4) == ('s')){
+            }*/
+            //Exite un error de diseño detectado 31/03/20 exiten palabras diferentes con la misma longitud en tokens
+
+             case 5 => {//token para class
+                if(cadena(0) == ('c') && cadena(1) == ('l' ) && cadena(2) == ('a') && cadena(3) == ('s') && cadena(4) == ('s' )){
                     true
                 }else{
                     false
                 }
             }
-
             case _ => false
         }
         
@@ -70,7 +71,6 @@ object HolaMundo{
             case _ => "" //default
         }
     }
-
     def Tabla_Sim_min(sim: Char): Boolean = { //tabla de simbolos para minusculas
         var bandera: Boolean = false
         var caracter: Int = 97
@@ -192,4 +192,49 @@ object HolaMundo{
            println(Analisis_Lexico(Console.in.readLine()))
        }while(true)
     }
+
+    //Código agregado por José
+    //Se crea una lista tipo enum para guardar las palabras reservadas
+    //Este código es para los tokens, falta agregar el código para el analizador léxico
+    enum TokenReservadas{
+        clase
+        privada
+        protegida
+        publica
+        si
+        sino
+        hacer_mientras 
+        mientras
+        para
+        error
+    }
+    //Variables a utilizar
+    TokenReservadas tipotoken;
+    String valorToken; 
+    //Métodos
+    def TokenReservadas(pasartoken: TokenReservadas,valor:String)=String
+    {
+        tipotoken=pasartoken;
+        valorToken=valor;
+    }
+    def ObtenerValor(): String=
+    {
+        valorToken;
+    }
+    def ObtenerTipo(): String=
+    {
+        tipotoken match
+        {
+            case TokenReservadas.clase => "Clase"
+            case TokenReservadas.publica => "publica"
+            case TokenReservadas.privada => "privada"
+            case TokenReservadas.protegida=> "protegida"
+            case TokenReservadas.si => "si"
+            case TokenReservadas.sino=> "sino"
+            case TokenReservadas.hacer_mientras => "hacer mientras"
+            case TokenReservadas.mientras=> "mientras"
+            case TokenReservadas.para=> "para"
+            case _=> "Error"
+        }
+    }    
 }
