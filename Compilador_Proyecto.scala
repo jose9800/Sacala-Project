@@ -27,8 +27,17 @@ object HolaMundo{
                 }
             }
             
-            case 5 => {//token para float
+            /*case 5 => {//token para float
                 if(cadena(0) == ('f') && cadena(1) == ('l' ) && cadena(2) == ('o') && cadena(3) == ('a') && cadena(4) == ('t' )){
+                    true
+                }else{
+                    false
+                }
+            }*/
+            //Exite un error de diseño detectado 31/03/20 exiten palabras diferentes con la misma longitud en tokens
+
+             case 5 => {//token para class
+                if(cadena(0) == ('c') && cadena(1) == ('l' ) && cadena(2) == ('a') && cadena(3) == ('s') && cadena(4) == ('s' )){
                     true
                 }else{
                     false
